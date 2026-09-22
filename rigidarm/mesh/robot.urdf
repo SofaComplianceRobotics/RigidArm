@@ -1,0 +1,174 @@
+<?xml version="1.0"?>
+<robot name="arm">
+
+  <link name="link1">
+    <visual>
+      <origin xyz="-160.8 0 -160.8" />
+      <geometry>
+        <mesh filename="RobotBase.stl"/>
+      </geometry>
+    </visual>
+    <inertial>
+      <mass value="0.01" />
+      <origin xyz="0 0 0" />
+      <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001" />
+    </inertial>
+  </link>
+
+  <link name="link2">
+    <visual>
+      <origin xyz="-160.8 -78.5 -160.8" />
+      <geometry>
+        <mesh filename="RobotPart1.stl"/>
+      </geometry>
+    </visual>
+    <visual>
+      <origin xyz="-160.8 -78.5 -160.8" />
+      <geometry>
+        <mesh filename="RobotPart3.stl"/>
+      </geometry>
+    </visual>
+    <inertial>
+      <mass value="0.01" />
+      <origin xyz="0 0 0" />
+      <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001" />
+    </inertial>
+  </link>
+
+  <link name="link3">
+    <visual>
+      <origin xyz="-254.8 -171 -160.8" />
+      <geometry>
+        <mesh filename="RobotPart2.stl"/>
+      </geometry>
+    </visual>
+    <visual>
+      <origin xyz="-254.8 -171 -160.8" />
+      <geometry>
+        <mesh filename="RobotPart4.stl"/>
+      </geometry>
+    </visual>
+    <inertial>
+      <mass value="0.01" />
+      <origin xyz="0 0 0" />
+      <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001" />
+    </inertial>
+  </link>
+
+  <link name="link4">
+    <visual>
+      <origin xyz="-347.3 -264 -160.8" />
+      <geometry>
+        <mesh filename="RobotPart6.stl"/>
+      </geometry>
+    </visual>
+    <inertial>
+      <mass value="0.01" />
+      <origin xyz="0 0 0" />
+      <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001" />
+    </inertial>
+  </link>
+
+  <link name="link5">   
+    <visual>
+      <origin xyz="-347.3 -484 -160.8" />
+      <geometry>
+        <mesh filename="RobotPart9.stl"/>
+      </geometry>
+    </visual> 
+    <visual>
+      <origin xyz="-347.3 -484 -160.8" />
+      <geometry>
+        <mesh filename="RobotPart5.stl"/>
+      </geometry>
+    </visual> 
+    <inertial>
+      <mass value="0.01" />
+      <origin xyz="0 0 0" />
+      <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001" />
+    </inertial>
+  </link>
+
+  <link name="link6">
+    <visual>
+      <origin xyz="-254  -569 -160.8" />
+      <geometry>
+        <mesh filename="RobotPart8.stl"/>
+      </geometry>
+    </visual>
+    <visual>
+      <origin xyz="-254  -569 -160.8" />
+      <geometry>
+        <mesh filename="RobotPart7.stl"/>
+      </geometry>
+    </visual>
+    <inertial>
+      <mass value="0.01" />
+      <origin xyz="0 0 0" />
+      <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001" />
+    </inertial>
+  </link>
+
+  <link name="link7">
+    <visual>
+      <origin xyz="-160.8 -442.5 -160.8" />
+      <geometry>
+        <mesh filename="RobotPart10.stl"/>
+      </geometry>
+    </visual>
+    <inertial>
+      <mass value="0.01" />
+      <origin xyz="0 0 0" />
+      <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001" />
+    </inertial>
+  </link>
+  
+  <joint name="joint1" type="revolute">
+    <parent link="link1"/>
+    <child link="link2"/>
+    <origin xyz="0 78.5 0" rpy="0 0 0" />
+    <axis xyz="0 1 0" />
+    <limit effort="1000.0" lower="-3.14" upper="3.14" velocity="1"/>
+  </joint>
+
+  <joint name="joint2" type="revolute">
+    <parent link="link2"/>
+    <child link="link3"/>
+    <origin xyz="94 92.5 0" rpy="0 0 0" />
+    <axis xyz="1 0 0" />
+    <limit effort="1000.0" lower="-3.14" upper="3.14" velocity="1"/>
+  </joint>
+
+  <joint name="joint3" type="revolute">
+    <parent link="link3"/>
+    <child link="link4"/>
+    <origin xyz="92.5 92.5 0" rpy="0 0 0" />
+    <axis xyz="0 1 0" />
+    <limit effort="1000.0" lower="-3.14" upper="3.14" velocity="1"/>
+  </joint>
+
+  <joint name="joint4" type="revolute">
+    <parent link="link4"/>
+    <child link="link5"/>
+    <origin xyz="0 220 0" rpy="0 0 0" />
+    <axis xyz="0 1 0" />
+    <limit effort="1000.0" lower="-3.14" upper="3.14" velocity="1"/>
+  </joint>
+
+  <joint name="joint5" type="revolute">
+    <parent link="link5"/>
+    <child link="link6"/>
+    <origin xyz="-94 85 0" rpy="0 0 0" />
+    <axis xyz="1 0 0" />
+    <limit effort="1000.0" lower="-3.14" upper="3.14" velocity="1"/>
+  </joint>
+
+  <joint name="joint6" type="revolute">
+    <parent link="link6"/>
+    <child link="link7"/>
+    <origin xyz="-93 -124 0" rpy="0 0 0" />
+    <axis xyz="0 1 0" />
+    <limit effort="1000.0" lower="-3.14" upper="3.14" velocity="1"/>
+  </joint>   
+ 
+</robot>
