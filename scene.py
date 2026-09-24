@@ -6,7 +6,6 @@ import Sofa.SoftRobots
     
 
 def createScene(rootnode):
-    from splib3.animation import AnimationManager, animate
     import Sofa.ImGui as MyGui
     from rigidarm.utils.header import addHeader, addSolvers
     from rigidarm.robot_pinocchio import Robot
@@ -18,7 +17,6 @@ def createScene(rootnode):
     if INVERSE:
         rootnode.ConstraintSolver.epsilon=1e-6
     addSolvers(simulation, firstOrder=1)
-    rootnode.addObject(AnimationManager(rootnode))
     rootnode.VisualStyle.displayFlags = ["showVisual"]
 
     rootnode.dt = 0.001
@@ -56,37 +54,6 @@ def createScene(rootnode):
         for i in range(6):
             joint = robot.addObject('JointActuator', template='Vec1', name='joint' + str(i), index=i, maxAngleVariation=0.01)
             MyGui.addActuator("M"+str(i), joint, -pi, pi)
-
-        # Target animation
-        def animation(target, endPosition, startPosition, factor, startTime=0):
-            if factor > 0:
-                q = [0, 0, 0, 0, 0, 0, 0]
-                # Allow for acceleration and deceleration by using a trigonometric function
-                for i in range(7):
-                    q[i] = startPosition[i] + (endPosition[i] - startPosition[i]) * (0.5 - 0.5 * np.cos(np.pi * factor))
-                # Normalize quaternion
-                q[3:7] /= np.linalg.norm(q[3:7])
-                target.value = [np.copy(q)]
-
-        # Initial position of the target
-        startTime = 0.
-        duration = 0.5
-        startPosition = np.copy(targetPosition)
-        endPosition = [0., 700., 300., 1., 0., 0., 0.]
-        animate(animation, {'target': target.getMechanicalState().position, 
-                            'endPosition': endPosition, 
-                            'startPosition': startPosition,
-                            'startTime': startTime}, duration=duration)
-
-        # Pick and place animation
-        startTime += duration
-        duration = 0.5
-        startPosition = np.copy(endPosition)
-        endPosition = [0., 700., -300., 1., 0., 0., 0.]
-        animate(animation, {'target': target.getMechanicalState().position,
-                            'endPosition': endPosition,
-                            'startPosition': startPosition,
-                            'startTime': startTime}, duration=duration, mode="pingpong")
 
     else: # Direct problem
         
